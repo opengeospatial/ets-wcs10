@@ -1555,8 +1555,8 @@ axis.</td>
    <ctl:test name="wcs1-0-0:basic_service_elements-version_numbering_and_negotiation-1">
       <ctl:param name="VAR_WCS_GET_CAPABILITIES_HTTP_GET_URL"/>
       <ctl:param name="parser"/>
-      <ctl:assertion>When a GetCapabilities request is made without a version number, then the response is the highest version supported. For wcs1.0.0, it is 1.0.0. </ctl:assertion>
-      <ctl:comment><![CDATA[Check for valid  XML where /WCS_Capabilities@version = 1.0.0 ]]></ctl:comment>
+      <ctl:assertion>When a GetCapabilities request is made without a version number, then the response is the highest version supported.</ctl:assertion>
+      <ctl:comment><![CDATA[Check that the response is not an exception]]></ctl:comment>
       <ctl:link title="OGC 03-065r6: cl. 6.2">http://cite.opengeospatial.org/OGCTestData/wcs/1.0.0/specs/03-065r6.html#6.2_Version_numbering_and_negotiation</ctl:link>
       <ctl:code>
          <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="request1">
@@ -1572,10 +1572,7 @@ axis.</td>
             </ctl:request>
          </xsl:variable>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
-            <xsl:if test="not(string(/*[local-name()='WCS_Capabilities'][namespace-uri()='http://www.opengis.net/wcs'][1]/@version)='1.0.0')">
-               <ctl:fail/>
-            </xsl:if>
-            <xsl:if test="not(*)">
+            <xsl:if test="local-name(*)='ServiceExceptionReport'">
                <ctl:fail/>
             </xsl:if>
          </xsl:for-each>
