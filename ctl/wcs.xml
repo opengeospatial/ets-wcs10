@@ -1352,6 +1352,7 @@ axis.</td>
    <ctl:suite name="wcs1-0-0:main_wcs1-0-0">
       <ctl:title>Web Coverage Service (WCS) 1.0.0</ctl:title>
       <ctl:description>Validates that a WCS 1.0.0 implementation meets requirements.</ctl:description>
+      <ctl:link>docs/wcs/1.0.0/</ctl:link>
       <ctl:starting-test>wcs1-0-0:main</ctl:starting-test>
    </ctl:suite>
    <ctl:test name="wcs1-0-0:basic_service_elements-general_http_request_rules-4">
