@@ -1,0 +1,9 @@
+WCS 1.0.0 Test Suite Release Notes
+
+
+Changes included in latest revision:
+
+2009-10-7 (cmorris):
+- Corrected time parameter on test getcoverage_operations-getcoverage_request-time-get-kvp-1 (Issue 307)
+- Added CRS parameter to test getcoverage_operations-getcoverage_request-time-get-kvp-2 (Issues 330, 309)
+- Added tests and bug fixes written for NSG that apply to the base WCS specification
