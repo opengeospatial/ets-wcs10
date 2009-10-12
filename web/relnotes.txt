@@ -3,6 +3,10 @@ WCS 1.0.0 Test Suite Release Notes
 
 Changes included in latest revision:
 
+2009-10-12 (kstegemoller):
+ - tag r0 
+ - no new changes
+
 2009-10-7 (cmorris):
 - Corrected time parameter on test getcoverage_operations-getcoverage_request-time-get-kvp-1 (Issue 307)
 - Added CRS parameter to test getcoverage_operations-getcoverage_request-time-get-kvp-2 (Issues 330, 309)
@@ -32,5 +36,4 @@ Changes included in latest revision:
 23	To return a coverage in multiple part files, the multi-part MIME encoding is used by the service.
 24	N/A - NSG specific
 25	Each coverage offering supports at least one of these: GeoTIFF, HDF-EOS, DTED, NITF, or GML 
-
 
