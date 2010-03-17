@@ -1833,9 +1833,10 @@ offering. Enter the grid resolutions below.</p>
          <xsl:if test="not(normalize-space(substring-before(concat($request1/response/headers/header[translate(@name, 'CONTYPE', 'contype') = 'content-type'], ';'), ';'))='application/vnd.ogc.se_xml')" xmlns="">
             <ctl:fail/>
          </xsl:if>
-         <xsl:if test="$request1/response/content/ogc:ServiceExceptionReport/ogc:ServiceException" xmlns="">
+         <!-- rb: following test is has no relevance -->
+         <!-- xsl:if test="$request1/response/content/ogc:ServiceExceptionReport/ogc:ServiceException" xmlns="">
             <ctl:fail/>
-         </xsl:if>
+         </xsl:if-->
       </ctl:code>
    </ctl:test>
    <ctl:test name="wcs1-0-0:basic_service_elements-version_numbering_and_negotiation-1">
