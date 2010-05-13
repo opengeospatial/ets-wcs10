@@ -3,9 +3,15 @@ WCS 1.0.0 Test Suite Release Notes
 
 Changes included in latest revision:
 
+2010-05-13 (kstegemoller):
+- release notes updated
+ 
+2010-03-17 (rbezema):
+- removed irrelevant testing of a none existing exception message
+
 2009-10-12 (kstegemoller):
- - tag r0 
- - no new changes
+- tag r0 
+- no new changes
 
 2009-10-7 (cmorris):
 - Corrected time parameter on test getcoverage_operations-getcoverage_request-time-get-kvp-1 (Issue 307)
