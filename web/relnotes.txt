@@ -3,11 +3,20 @@ WCS 1.0.0 Test Suite Release Notes
 
 Changes included in latest revision:
 
+2010-09-10 (kstegemoller):
+- release notes updated
+ 
+2010-08-30 (aschmitz):
+- removed call to removed tests (issue #23)
+
 2010-05-13 (kstegemoller):
 - release notes updated
  
 2010-03-17 (rbezema):
 - removed irrelevant testing of a none existing exception message
+
+
+=== Changes included in R0 ===
 
 2009-10-12 (kstegemoller):
 - tag r0 
