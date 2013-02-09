@@ -1,5 +1,8 @@
 WCS 1.0.0 Test Suite Release Notes
 
+=== Changes in r4 (2013-02-08) ===
+- added note about required libs (resources/README.txt)
+
 
 === Changes included in r3 ===
 2012-06-25 
