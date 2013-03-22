@@ -1,8 +1,12 @@
 WCS 1.0.0 Test Suite Release Notes
 
+=== Changes in r5 (2013-03-22) ===
+- correct wcs1-0-0:getcapabilities_operations-getcapabilities_request-post-xml-7 as reported in 776
+- removed "deprecated" notice in config.xml
+
+
 === Changes in r4 (2013-02-08) ===
 - added note about required libs (resources/README.txt)
-
 
 === Changes included in r3 ===
 2012-06-25 

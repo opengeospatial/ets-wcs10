@@ -5,7 +5,7 @@
   <standard>
     <name>Web Coverage Service (WCS)</name>
     <version>
-      <name>1.0.0 (deprecated)</name>
+      <name>1.0.0</name>
       <suite>
         <namespace-uri>http://www.opengis.net/wcs</namespace-uri>
         <prefix>wcs1-0-0</prefix>
@@ -14,7 +14,7 @@
         <description>Checks WCS implementations for conformance to OGC 05-076.</description>
       </suite>
       <revision>
-        <name>r4</name>
+        <name>r5</name>
         <sources>
           <source>wcs/1.0.0/ctl</source>
         </sources>
