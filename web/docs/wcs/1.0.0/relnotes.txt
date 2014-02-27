@@ -1,6 +1,12 @@
 WCS 1.0.0 Test Suite Release Notes
 
-=== Changes in r5 (2013-03-22) ===
+Changes in r6 (2014-02-27)
+--------------------------
+- Fixed CITE-919: Added function wcs:coords-from-envelope to extract coordinates from gml:Envelope (wcs-functions.xml).
+- Fixed type derivation error in 1.0.0_c1/wcsCapabilities.xsd (AbstractDescriptionBaseType).
+
+Changes in r5 (2013-03-22)
+--------------------------
 - correct wcs1-0-0:getcapabilities_operations-getcapabilities_request-post-xml-7 as reported in 776
 - removed "deprecated" notice in config.xml
 

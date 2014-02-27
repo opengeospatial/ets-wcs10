@@ -1712,13 +1712,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_COVERAGE_1_CRS: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_COVERAGE_1_CRS"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_FORMAT_1">
             <xsl:for-each select="$request1">
                <xsl:value-of select="citef:iif(&#xA;contains(//*[local-name()='formats'][1],&#34; &#34;),&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='formats'][1]),&#34; &#34;), &#xA;string(/*[local-name()='CoverageDescription']//*[local-name()='formats'][1]))"/>
@@ -1766,7 +1765,8 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request2">
             <xsl:if test="not(normalize-space(substring-before(concat(/headers/header[translate(name, 'CONTYPE', 'contype') = 'content-type']/value, ';'), ';'))=$VAR_WCS_FORMAT_1_HEADER)">
-               <ctl:fail/>
+              <ctl:message>[FAIL] Expected content-type header: <xsl:value-of select="$VAR_WCS_FORMAT_1_HEADER"/></ctl:message>
+              <ctl:fail/>
             </xsl:if>
          </xsl:for-each>
       </ctl:code>
@@ -3459,13 +3459,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -3555,13 +3554,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -3652,14 +3650,13 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
-         <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
+         <xsl:for-each select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
             </xsl:if>
@@ -3748,13 +3745,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -3846,19 +3842,15 @@ offering. Enter the grid resolutions below.</p>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
          <xsl:variable name="VAR_WCS_COVERAGE_1_POSITION_FIRST">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="string(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1])"/>
-            </xsl:for-each>
+           <!-- WARNING: Breaks if envelope has gml:coordinates -->
+           <xsl:value-of select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]/gml:pos[1]" />
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_FIRST: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_FIRST"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_FIRST: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_FIRST"/></ctl:message>
          <xsl:variable name="VAR_WCS_COVERAGE_1_POSITION_SECOND">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="string(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2])"/>
-            </xsl:for-each>
+           <!-- WARNING: Breaks if envelope has gml:coordinates -->
+           <xsl:value-of select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]/gml:pos[2]" />
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_SECOND: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_SECOND"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_SECOND: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_SECOND"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -3935,19 +3927,15 @@ offering. Enter the grid resolutions below.</p>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
          <xsl:variable name="VAR_WCS_COVERAGE_1_POSITION_FIRST">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="string(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1])"/>
-            </xsl:for-each>
+           <!-- WARNING: Breaks if envelope has gml:coordinates -->
+           <xsl:value-of select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]/gml:pos[1]" />
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_FIRST: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_FIRST"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_FIRST: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_FIRST"/></ctl:message>
          <xsl:variable name="VAR_WCS_COVERAGE_1_POSITION_SECOND">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="string(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2])"/>
-            </xsl:for-each>
+           <!-- WARNING: Breaks if envelope has gml:coordinates -->
+           <xsl:value-of select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]/gml:pos[2]" />
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_SECOND: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_SECOND"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_SECOND: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_SECOND"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4009,13 +3997,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4091,13 +4078,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4174,13 +4160,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4256,13 +4241,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4340,19 +4324,15 @@ offering. Enter the grid resolutions below.</p>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
          <xsl:variable name="VAR_WCS_COVERAGE_1_POSITION_FIRST">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="string(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1])"/>
-            </xsl:for-each>
+           <!-- WARNING: Breaks if envelope has gml:coordinates -->
+           <xsl:value-of select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]/gml:pos[1]" />
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_FIRST: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_FIRST"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_FIRST: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_FIRST"/></ctl:message>
          <xsl:variable name="VAR_WCS_COVERAGE_1_POSITION_SECOND">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="string(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2])"/>
-            </xsl:for-each>
+           <!-- WARNING: Breaks if envelope has gml:coordinates -->
+           <xsl:value-of select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]/gml:pos[2]" />
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_SECOND: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_SECOND"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_SECOND: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_SECOND"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4430,13 +4410,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4528,13 +4507,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4626,13 +4604,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4724,13 +4701,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+						 <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4813,13 +4789,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_COVERAGE_1_CRS: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_COVERAGE_1_CRS"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+	           <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4901,13 +4876,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_COVERAGE_1_CRS: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_COVERAGE_1_CRS"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+	           <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -4988,13 +4962,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_COVERAGE_1_CRS: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_COVERAGE_1_CRS"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+	           <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -5076,13 +5049,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_COVERAGE_1_CRS: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_COVERAGE_1_CRS"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+	           <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -5164,19 +5136,15 @@ offering. Enter the grid resolutions below.</p>
          <ctl:message>VAR_WCS_COVERAGE_1_CRS: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_COVERAGE_1_CRS"/>
          </ctl:message>
          <xsl:variable name="VAR_WCS_COVERAGE_1_POSITION_FIRST">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="string(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1])"/>
-            </xsl:for-each>
+           <!-- WARNING: Breaks if envelope has gml:coordinates -->
+           <xsl:value-of select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]/gml:pos[1]" />
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_FIRST: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_FIRST"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_FIRST: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_FIRST"/></ctl:message>
          <xsl:variable name="VAR_WCS_COVERAGE_1_POSITION_SECOND">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="string(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2])"/>
-            </xsl:for-each>
+           <!-- WARNING: Breaks if envelope has gml:coordinates -->
+           <xsl:value-of select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]/gml:pos[2]" />
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_SECOND: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_SECOND"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_POSITION_SECOND: <xsl:value-of select="$VAR_WCS_COVERAGE_1_POSITION_SECOND"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -5335,13 +5303,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+	           <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -5435,13 +5402,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+	           <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
@@ -5532,13 +5498,12 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <ctl:message>VAR_WCS_FORMAT_1: <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$VAR_WCS_FORMAT_1"/>
          </ctl:message>
-         <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_COVERAGE_1_BBOX">
-            <xsl:for-each select="$request1">
-               <xsl:value-of select="concat(&#xA;substring-before(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][1],&#34; &#34;)),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;substring-before(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#34;,&#34;,&#xA;normalize-space(substring-after(normalize-space(/*[local-name()='CoverageDescription'][1]//*[local-name()='domainSet'][1]//*[local-name()='pos'][2]),&#34; &#34;)) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
-            </xsl:for-each>
+         <xsl:variable name="VAR_WCS_COVERAGE_1_BBOX">
+           <ctl:call-function name="wcs:coords-from-envelope">
+	           <ctl:with-param name="env" select="$request1//wcs:spatialDomain[1]/gml:Envelope[1]"/>
+           </ctl:call-function>
          </xsl:variable>
-         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/>
-         </ctl:message>
+         <ctl:message>VAR_WCS_COVERAGE_1_BBOX: <xsl:value-of select="$VAR_WCS_COVERAGE_1_BBOX"/></ctl:message>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request1">
             <xsl:if test="not(*)">
                <ctl:fail/>
