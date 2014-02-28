@@ -298,10 +298,10 @@ offering. Enter the grid resolutions below.</p>
                <xsl:value-of select="string(wcs:WCS_Capabilities/@updateSequence)"/>
             </xsl:variable>
             <xsl:variable name="VAR_WCS_COVERAGE_1">
-               <xsl:value-of select="string(wcs:WCS_Capabilities//wcs:CoverageOfferingBrief[1]/wcs:name)"/>
+               <xsl:value-of select="encode-for-uri(//wcs:CoverageOfferingBrief[1]/wcs:name)"/>
             </xsl:variable>
             <xsl:variable name="VAR_WCS_COVERAGE_2">
-               <xsl:value-of select="string(wcs:WCS_Capabilities//wcs:CoverageOfferingBrief[2]/wcs:name)"/>
+               <xsl:value-of select="encode-for-uri(//wcs:CoverageOfferingBrief[2]/wcs:name)"/>
             </xsl:variable>
             <xsl:variable name="VAR_WCS_COVERAGE_WITH_COMMA">
                <xsl:value-of select="string(wcs:WCS_Capabilities//wcs:CoverageOfferingBrief[contains(wcs:name, ',')]/wcs:name)"/>
@@ -1996,7 +1996,7 @@ offering. Enter the grid resolutions below.</p>
                <ctl:method>get</ctl:method>
                <ctl:param name="ReQuEsT">DescribeCoverage</ctl:param>
                <ctl:param name="CoVeRaGe">
-                  <xsl:value-of select="fn:encode-for-uri($VAR_WCS_COVERAGE_1)"/>,<xsl:value-of select="fn:encode-for-uri($VAR_WCS_COVERAGE_2)"/>
+                  <xsl:value-of select="$VAR_WCS_COVERAGE_1"/>,<xsl:value-of select="$VAR_WCS_COVERAGE_2"/>
                </ctl:param>
                <ctl:param name="SeRvIcE">WCS</ctl:param>
                <ctl:param name="VeRsIoN">
