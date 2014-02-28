@@ -1,9 +1,14 @@
 WCS 1.0.0 Test Suite Release Notes
+==================================
 
-Changes in r6 (2014-02-27)
+
+Changes in r6 (2014-02-28)
 --------------------------
 - Fixed CITE-919: Added function wcs:coords-from-envelope to extract coordinates from gml:Envelope (wcs-functions.xml).
-- Fixed type derivation error in 1.0.0_c1/wcsCapabilities.xsd (AbstractDescriptionBaseType).
+- Fixed VAR_WCS_COVERAGE_1_POSITION_FIRST and VAR_WCS_COVERAGE_1_POSITION_SECOND variables to allow for multiple 
+  occurrences of gml:Envelope (in wcs:spatialDomain context).
+- Fixed type restriction error in 1.0.0_c1/wcsCapabilities.xsd (AbstractDescriptionBaseType).
+
 
 Changes in r5 (2013-03-22)
 --------------------------
