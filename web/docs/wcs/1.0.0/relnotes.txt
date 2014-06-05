@@ -1,9 +1,9 @@
 WCS 1.0.0 Test Suite Release Notes
 ==================================
 
-Changes in r7 (YYYY-MM-DD)
---------------------------
-- ?
+r7 (2014-MM-DD)
+---------------
+- Fix CITE-951: ServletException occurs when image returned instead of expected exception report.
 
 
 Changes in r6 (2014-02-28)
