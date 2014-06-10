@@ -14,7 +14,7 @@
         <description>Checks WCS implementations for conformance to OGC 05-076.</description>
       </suite>
       <revision>
-        <name>r7</name>
+        <name>r8</name>
         <sources>
           <source>wcs/1.0.0/ctl</source>
         </sources>
