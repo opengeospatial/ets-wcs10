@@ -1822,7 +1822,9 @@ offering. Enter the grid resolutions below.</p>
                   <xsl:value-of select="$VAR_WCS_DESCRIBE_COVERAGE_HTTP_GET_URL"/>
                </ctl:url>
                <ctl:method>get</ctl:method>
-               <ctl:param name="ReQuEsT">DescribeCoverage</ctl:param>
+               
+               <ctl:param name="version">1.0.0</ctl:param>
+               <ctl:param name="ReQuEssT">DescribeCoverage</ctl:param>
                <ctl:param name="SeRvIcE">WCS</ctl:param>
                <parsers:HTTPParser>
                   <parsers:parse>
