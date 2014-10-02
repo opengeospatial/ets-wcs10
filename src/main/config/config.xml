@@ -14,12 +14,12 @@
         <description>Checks WCS implementations for conformance to OGC 05-076.</description>
       </suite>
       <revision>
-        <name>r8</name>
+        <name>${project.version}</name>
         <sources>
-          <source>wcs/1.0.0/ctl</source>
+          <source>wcs/${spec-version}/ctl</source>
         </sources>
-        <resources>wcs/1.0.0/resources</resources>
-        <webdir>wcs/1.0.0/web</webdir>
+        <resources>wcs/${spec-version}/resources</resources>
+        <webdir>wcs/${spec-version}/site</webdir>
       </revision>
     </version>
   </standard>

@@ -57,42 +57,34 @@
       <ctl:link>docs/wcs/1.0.0/</ctl:link>
       <ctl:starting-test>wcs1-0-0:main</ctl:starting-test>
       <ctl:form xmlns="">
-                  <h3>Web Coverage Service 1.0.0</h3>
-                  <p>The following options are only concerned with the Web Coverage
-Service tests</p>
-                  <p>The Web Coverage Service tests scripts are designed to test WCS
-implementations based on the WCS 1.0.0 specification.</p>
-                  <p>A complete list of tests in the test suite is available in the
-<a href="/about/wcs/1.0.0/web/docs/wcs/1.0.0/wcs-1.0.0-ats.html" target="_blank">Abstract Test Suite</a> document, 
-but note that not all of the tests are applicable to all servers. The number of tests
-actually executed will depend on the capabilities advertised in the
-capabilities URL supplied below as well as the other options
-selected below.</p>
-                  <p>There are some requirements for the dataset.</p>
-                  <p>At least there are two overages in the tested server.</p>
-                  <p>The first coverage offering should include all the tested
-features while the second coverage could be any thing.</p>
-                  <br/>
-                  <br/>
-                  <p>The first coverage offering must take one of the 5 formats
+                  <h3>Web Coverage Service 1.0.0 Executable Test Suite</h3>
+                  <p>Complete information about this test suite can be found at: <a href="../site" target="_blank">documentation webpage.</a></p>
+                  <p>Detailed information about each testcan be found at <a href="../site/wcs-1.0.0-ats.html" target="_blank">Abstract Test Suite</a> document</p> 
+                  <p>Note: This tests actually executed will depend on the capabilities advertised by the server
+(capabilities URL) as well as the other options selected below.</p>
+                  <p>These  are some requirements for the dataset:</p>
+                  <ul>
+                     <li>At least there are two overages in the tested server.</li>
+                     <li>The first coverage offering should include all the tested
+features while the second coverage could be any thing.</li>
+                     <li>The first coverage offering must take one of the 5 formats
 described in the WCS1.0.0 standard document as the first supported
-format.</p>
-                  <p>The first coverage offering should have interpolation method
-defined, if the xml encoding is tested.</p>
-                  <p>The first coverage offering should have parameters defined in
-the axisDescription.</p>
-                  <p>The first coverage offering should define time feature, if the
-server support time position.</p>
-                  <br/>
-                  <br/>
-                  <h4>Capabilities Setup</h4>
-                  <br/>
-                  <br/>
+format.</li>
+                  <li>The first coverage offering should have interpolation method
+defined, if the xml encoding is tested.</li>
+                  <li>The first coverage offering should have parameters defined in
+the axisDescription.</li>
+                  <li>The first coverage offering should define time feature, if the
+server support time position.</li>
+                  </ul>
+                  <h4>Test Parameters</h4>
+                  <p>Examples for inputs are presented based on the deegree reference implementation.</p>
+          
                   <p>Enter a capabilities document URL below. This may be the URL to
 a static capabilities document, or a GetCapabilities request from a
-WMS. A typical GetCapabilities request will take this form:</p>
+WCS. A typical GetCapabilities request will take this form:</p>
                   <pre>
-    http://hostname/path?service=WCS&amp;version=1.0.0&amp;request=GetCapabilities
+    http://cite.lat-lon.de/deegree-webservices-3.3.6/services/wcs?service=WCS&amp;version=1.0.0&amp;request=GetCapabilities
 </pre>
                   <br/>
                   <br/>
@@ -100,7 +92,7 @@ WMS. A typical GetCapabilities request will take this form:</p>
                      <table border="3" padding="3">
                         <tr>
                            <td align="center">
-                              <input name="VAR_WCS_CAPABILITIES_URL" size="100" type="text" value=""/>
+                              <input name="VAR_WCS_CAPABILITIES_URL" size="100" type="text" value="http://cite.lat-lon.de/deegree-webservices-3.3.6/services/wcs?service=WCS&amp;version=1.0.0&amp;request=GetCapabilities"/>
                            </td>
                            <td align="left">Capabilities URL</td>
                         </tr>
@@ -114,12 +106,12 @@ required. Thus the actual MIME header depends on the server. The
 assertion test will check the results based on the first available
 format for the first coverage. Enter the mime header for the first
 available format in the coverage offering for the first coverage
-below.</p>
+below. For example: <b>image/tiff</b></p>
                   <blockquote>
                      <table border="3" padding="3">
                         <tr>
                            <td align="center">
-                              <input name="VAR_WCS_FORMAT_1_HEADER" size="100" type="text" value=""/>
+                              <input name="VAR_WCS_FORMAT_1_HEADER" size="100" type="text" value="image/tiff"/>
                            </td>
                            <td align="left">MIME header</td>
                         </tr>
@@ -128,22 +120,21 @@ below.</p>
                   <h4>UpdateSequence Values</h4>
                   <br/>
                   <br/>
-                  <p>The WCS spec allows servers to use an UpdateSequence value for
+                  <p>The WCS Standard allows servers to use an UpdateSequence value for
 maintaining cache consistency. If the server advertises an
-UpdateSequence value, enter the updateSequence values requested
-below.</p>
+UpdateSequence value, enter the updateSequence values.</p>
                   <blockquote>
                      <table border="3" padding="3">
                         <tr>
                            <td align="center">
-                              <input name="VAR_HIGH_UPDATESEQUENCE" size="25" type="text" value=""/>
+                              <input name="VAR_HIGH_UPDATESEQUENCE" size="25" type="text" value="1"/>
                            </td>
                            <td align="left">A value that is lexically higher than the current
 updateSequence value</td>
                         </tr>
                         <tr>
                            <td align="center">
-                              <input name="VAR_LOW_UPDATESEQUENCE" size="25" type="text" value=""/>
+                              <input name="VAR_LOW_UPDATESEQUENCE" size="25" type="text" value="-1"/>
                            </td>
                            <td align="left">A value that is lexically lower than the current
 updateSequence value</td>
@@ -160,13 +151,13 @@ offering. Enter the grid resolutions below.</p>
                      <table border="3" padding="3">
                         <tr>
                            <td align="center">
-                              <input name="VAR_WCS_COVERAGE_1_RESX" size="25" type="text" value=""/>
+                              <input name="VAR_WCS_COVERAGE_1_RESX" size="25" type="text" value="16"/>
                            </td>
                            <td align="left">A value that is lexically representing RESX</td>
                         </tr>
                         <tr>
                            <td align="center">
-                              <input name="VAR_WCS_COVERAGE_1_RESY" size="25" type="text" value=""/>
+                              <input name="VAR_WCS_COVERAGE_1_RESY" size="25" type="text" value="16"/>
                            </td>
                            <td align="left">A value that is lexically representing RESY</td>
                         </tr>
@@ -180,7 +171,7 @@ offering. Enter the grid resolutions below.</p>
                      <table border="3" padding="3">
                         <tr>
                            <td align="center">
-                              <input name="xml" type="checkbox" value="xml"/>
+                              <input name="xml" type="checkbox" value="xml" checked="checked"/>
                            </td>
                            <td align="left">Verify that the server supports XML encoding.</td>
                         </tr>
@@ -191,7 +182,7 @@ offering. Enter the grid resolutions below.</p>
                      <table border="3" padding="3">
                         <tr>
                            <td align="center">
-                              <input name="haveparameter" type="checkbox" value="haveparameter"/>
+                              <input name="haveparameter" type="checkbox" value="haveparameter" checked="checked"/>
                            </td>
                            <td align="left">Verify that the server supports range set axis.</td>
                         </tr>
@@ -225,7 +216,7 @@ offering. Enter the grid resolutions below.</p>
                      <table border="3" padding="3">
                         <tr>
                            <td align="center">
-                              <input name="VAR_MULTIFILE_FORMATS" size="100" type="text" value=""/>
+                              <input name="VAR_MULTIFILE_FORMATS" size="100" type="text" value="image/tif"/>
                            </td>
                            <td align="left">Multi-file formats</td>
                         </tr>
