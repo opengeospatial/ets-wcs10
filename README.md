@@ -4,7 +4,7 @@ The OGC Web Coverage Service 1.0.0 Test-Suite provides the Executable Test Scrip
 
   * [ OGC Web Coverage Service (WCS) Implementation Specification](http://www.opengeospatial.org/standards/wcs) (OGC-03-065r6)
   * [ OGC Web Coverage Service (WCS) Implementation Specification Corrigendum (1.0.0)](http://www.opengeospatial.org/standards/wcs) (OGC-05-076)
-  * [Test Requirements and Assertions](testreq.html)
+
 
 Detailed information about this test suite is available [here](http://opengeospatial.github.io/ets-wcs10).
 
