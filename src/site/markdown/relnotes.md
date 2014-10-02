@@ -1,6 +1,14 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## r8 (2014-10-02)
+
+ * [#9](https://github.com/opengeospatial/ets-wcs10/issues/9) - request bbox issue - r7
+ * [#7](https://github.com/opengeospatial/ets-wcs10/issues/7) - CITE tests will generate gml:pos with comma separated ordinates
+ * [#5](https://github.com/opengeospatial/ets-wcs10/issues/5) - WCS tests work only if coverage names have no char that needs to be url encoded
+ * [#4](https://github.com/opengeospatial/ets-wcs10/issues/4) - Exception tests do not work if higher versions of the WCS spec are also implemented in the same server
+
+
 ## r7 (2014-06-10)
 
   * Fix CITE-951: ServletException occurs when image returned instead of expected exception report.
