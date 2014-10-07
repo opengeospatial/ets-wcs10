@@ -1,8 +1,9 @@
+# Maven output
 target/
-pom.xml.tag
 pom.xml.releaseBackup
-pom.xml.next
 release.properties
+pom.xml.tag
+pom.xml.next
 
 .DS_Store
 */.DS_Store
