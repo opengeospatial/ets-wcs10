@@ -5709,7 +5709,10 @@ offering. Enter the grid resolutions below.</p>
                </ctl:param>
             </ctl:request>
          </xsl:variable>
-         <xsl:for-each select="$request1/wcs:CoverageDescription/wcs:CoverageOffering[wcs:name=$VAR_WCS_COVERAGE_1]/wcs:domainSet/wcs:spatialDomain/gml:RectifiedGrid[1]">
+         <xsl:for-each select="$request1">
+            <xsl:choose>
+               <xsl:when test="exists(wcs:CoverageDescription/wcs:CoverageOffering[wcs:name=$VAR_WCS_COVERAGE_1]/wcs:domainSet/wcs:spatialDomain/gml:RectifiedGrid[1])">
+
             <xsl:variable name="request2">
                <ctl:request>
                   <ctl:url>
@@ -5755,6 +5758,13 @@ offering. Enter the grid resolutions below.</p>
                   <ctl:fail/>
                </xsl:if>
             </xsl:for-each>
+
+	       </xsl:when>
+	       <xsl:otherwise>
+                  <ctl:message>wcs:CoverageDescription does not contain wcs:spatialDomain/gml:RectifiedGrid.</ctl:message>
+                  <ctl:skipped/>
+	       </xsl:otherwise>
+	    </xsl:choose>
          </xsl:for-each>
       </ctl:code>
    </ctl:test>
