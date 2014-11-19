@@ -1,6 +1,12 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## r9 (2014-11-19)
+
+* [#2](https://github.com/opengeospatial/ets-wcs10/issues/2) - WCS Format Parameter on GetCoverage Post request
+* [#10](https://github.com/opengeospatial/ets-wcs10/issues/10) - MIME type exception when a GetCoverage request is made without a specific grid size and without a grid resolution
+
+
 ## r8 (2014-10-02)
 
  * [#9](https://github.com/opengeospatial/ets-wcs10/issues/9) - request bbox issue - r7
