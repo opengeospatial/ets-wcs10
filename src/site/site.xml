@@ -27,7 +27,7 @@
   <body>
 
     <links>
-      <item name="Issues" href="https://github.com/opengeospatial/$artifactId/issues"/>
+      <item name="Issues" href="https://github.com/opengeospatial/ets-wcs10/issues"/>
     </links>
 
     <menu name="Documentation">
