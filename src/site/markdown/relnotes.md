@@ -1,6 +1,9 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.10 (2015-03-05)
+* Update to new release scheme
+
 ## r9 (2014-11-19)
 
 * [#2](https://github.com/opengeospatial/ets-wcs10/issues/2) - WCS Format Parameter on GetCoverage Post request
