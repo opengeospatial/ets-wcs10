@@ -5591,17 +5591,16 @@ offering. Enter the grid resolutions below.</p>
          <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="request1">
             <ctl:request>
                <ctl:url>
-                  <xsl:value-of select="$VAR_WCS_DESCRIBE_COVERAGE_HTTP_GET_URL"/>
+		   <xsl:value-of select="$VAR_WCS_DESCRIBE_COVERAGE_HTTP_POST_URL"/>
                </ctl:url>
-               <ctl:method>get</ctl:method>
-               <ctl:param name="VeRsIoN">
-                  <xsl:value-of select="$VAR_WCS_VERSION"/>
-               </ctl:param>
-               <ctl:param name="SeRvIcE">WCS</ctl:param>
-               <ctl:param name="ReQuEsT">DescribeCoverage</ctl:param>
-               <ctl:param name="CoVeRaGe">
-                  <xsl:value-of select="$VAR_WCS_COVERAGE_1"/>
-               </ctl:param>
+               <ctl:method>post</ctl:method>
+               <ctl:header name="Content-type">text/xml</ctl:header>
+               <ctl:body><![CDATA[
+               <DescribeCoverage service="WCS" version="]]><xsl:value-of select="$VAR_WCS_VERSION"/><![CDATA[">
+                 <Coverage>]]><xsl:value-of select="$VAR_WCS_COVERAGE_1"/><![CDATA[</Coverage>
+               </DescribeCoverage>]]>
+               </ctl:body>
+               <parsers:HeadersParser />
             </ctl:request>
          </xsl:variable>
          <xsl:variable xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="VAR_WCS_TEMP_CRS">
