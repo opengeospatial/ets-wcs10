@@ -3,6 +3,7 @@
 
 ## 1.11 (2015-07-30)
 - Update pom.xml to build with Maven 2 and minor edits
+- Fix [#13](https://github.com/opengeospatial/ets-wcs10/issues/13) Replace DescribeCoverage HTTP GET with HTTP POST request
 
 ## 1.10 (2015-03-05)
 * Update to new release scheme
