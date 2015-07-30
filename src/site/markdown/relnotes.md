@@ -1,6 +1,9 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.11 (2015-07-30)
+- Update pom.xml to build with Maven 2 and minor edits
+
 ## 1.10 (2015-03-05)
 * Update to new release scheme
 
