@@ -1,6 +1,9 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.12 (2017-01-31)
+- Fix [#15](https://github.com/opengeospatial/ets-wcs10/issues/15) Variable $VAR_WCS_DESCRIBE_COVERAGE_HTTP_POST_URL has not been declared in Test wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-get-xml-2
+
 ## 1.11 (2015-07-30)
 - Update pom.xml to build with Maven 2 and minor edits
 - Fix [#13](https://github.com/opengeospatial/ets-wcs10/issues/13) Replace DescribeCoverage HTTP GET with HTTP POST request
