@@ -1049,7 +1049,7 @@ offering. Enter the grid resolutions below.</p>
                      </ctl:call-test>
                   </xsl:if>
                   <xsl:if test="$post and $xml">
-                     <ctl:call-test name="wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-get-xml-2">
+                     <ctl:call-test name="wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-post-xml-2">
                         <ctl:with-param name="VAR_WCS_VERSION" select="$VAR_WCS_VERSION"/>
                         <ctl:with-param name="VAR_WCS_COVERAGE_1" select="$VAR_WCS_COVERAGE_1"/>
                         <ctl:with-param name="VAR_WCS_RAW_COVERAGE_1" select="$VAR_WCS_RAW_COVERAGE_1"/>
@@ -5578,7 +5578,7 @@ offering. Enter the grid resolutions below.</p>
          </xsl:for-each>
       </ctl:code>
    </ctl:test>
-   <ctl:test name="wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-get-xml-2">
+   <ctl:test name="wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-post-xml-2">
       <ctl:param name="VAR_WCS_VERSION"/>
       <ctl:param name="VAR_WCS_COVERAGE_1"/>
       <ctl:param name="VAR_WCS_RAW_COVERAGE_1"/>
