@@ -1,6 +1,10 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.13 (2017-04-13)
+- Fix [#24](https://github.com/opengeospatial/ets-wcs10/issues/24) Rename test getcoverage_operations-getcoverage_request-grid_size-get-xml-2
+- Fix [#19](https://github.com/opengeospatial/ets-wcs10/issues/19) Question regarding Test wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-get-kvp-2
+
 ## 1.12 (2017-01-31)
 - Fix [#15](https://github.com/opengeospatial/ets-wcs10/issues/15) Variable $VAR_WCS_DESCRIBE_COVERAGE_HTTP_POST_URL has not been declared in Test wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-get-xml-2
 
