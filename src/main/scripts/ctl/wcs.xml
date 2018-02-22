@@ -5596,7 +5596,7 @@ offering. Enter the grid resolutions below.</p>
                <ctl:method>post</ctl:method>
                <ctl:header name="Content-type">text/xml</ctl:header>
                <ctl:body><![CDATA[
-               <DescribeCoverage service="WCS" version="]]><xsl:value-of select="$VAR_WCS_VERSION"/><![CDATA[">
+               <DescribeCoverage xmlns="http://www.opengis.net/wcs" service="WCS" version="]]><xsl:value-of select="$VAR_WCS_VERSION"/><![CDATA[">
                  <Coverage>]]><xsl:value-of select="$VAR_WCS_COVERAGE_1"/><![CDATA[</Coverage>
                </DescribeCoverage>]]>
                </ctl:body>
