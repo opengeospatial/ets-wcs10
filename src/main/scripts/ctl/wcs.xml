@@ -8619,7 +8619,7 @@ offering. Enter the grid resolutions below.</p>
                <ctl:method>post</ctl:method>
                <ctl:header name="Content-type">text/xml</ctl:header>
                <ctl:body><![CDATA[<GetCoverage xmlns="http://www.opengis.net/wcs" xmlns:gml="http://www.opengis.net/gml"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wcs http://schemas.opengis.net/wcs/1.0.0/getCoverage.xsd" version="]]><xsl:value-of select="$VAR_WCS_VERSION"/><![CDATA[" service="WCS" ><sourceCoverage>]]><xsl:value-of select="$VAR_WCS_RAW_COVERAGE_1"/><![CDATA[</sourceCoverage><domainSubset><temporalSubset>
-        <gml:timePosition>]]><xsl:value-of select="$VAR_WCS_COVERAGE_1_TIME"/><![CDATA[</timePosition>
+        <gml:timePosition>]]><xsl:value-of select="$VAR_WCS_COVERAGE_1_TIME"/><![CDATA[</gml:timePosition>
 </temporalSubset></domainSubset>
 <output><format>]]><xsl:value-of select="$VAR_WCS_FORMAT_1"/><![CDATA[</format></output></GetCoverage>]]></ctl:body>
                <parsers:HeadersParser/>
@@ -8692,7 +8692,7 @@ offering. Enter the grid resolutions below.</p>
                <ctl:method>post</ctl:method>
                <ctl:header name="Content-type">text/xml</ctl:header>
                <ctl:body><![CDATA[  <GetCoverage xmlns="http://www.opengis.net/wcs" xmlns:gml="http://www.opengis.net/gml"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wcs http://schemas.opengis.net/wcs/1.0.0/getCoverage.xsd" version="]]><xsl:value-of select="$VAR_WCS_VERSION"/><![CDATA[" service="WCS" ><sourceCoverage>]]><xsl:value-of select="$VAR_WCS_RAW_COVERAGE_1"/><![CDATA[</sourceCoverage><domainSubset><temporalSubset>
-        <gml:timePosition>WCS_TIME_INVALID</timePosition>
+        <gml:timePosition>WCS_TIME_INVALID</gml:timePosition>
 </temporalSubset></domainSubset>
 <output><format>]]><xsl:value-of select="$VAR_WCS_FORMAT_1"/><![CDATA[</format></output></GetCoverage>]]></ctl:body>
             </ctl:request>
