@@ -331,7 +331,8 @@
       <xs:element name="VendorSpecificCapabilities" minOccurs="0">
         <xs:complexType>
           <xs:sequence>
-            <xs:any/>
+            <!-- added processContents="lax" to avoid failures during validation (see https://github.com/opengeospatial/ets-wcs10/issues/32) -->
+            <xs:any processContents="lax"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
