@@ -1,6 +1,12 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.14 (2018-02-27)
+- Fix [#32](https://github.com/opengeospatial/ets-wcs10/issues/32) WCS VendorSpecificCapabilities Validation failure for GetCapabilities response
+- Fix [#31](https://github.com/opengeospatial/ets-wcs10/issues/31) wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-post-xml-2 fails cause of unexpected Content-Type
+- Fix [#30](https://github.com/opengeospatial/ets-wcs10/issues/30) Incorrect request from WCS Team Engine Test Case for DescribeCoverage
+- Fix [#29](https://github.com/opengeospatial/ets-wcs10/issues/29) Incorrect request from WCS Team Engine Test Case for GetCoverage - "gml" namespace identifier missing
+
 ## 1.13 (2017-04-13)
 - Fix [#24](https://github.com/opengeospatial/ets-wcs10/issues/24) Rename test getcoverage_operations-getcoverage_request-grid_size-get-xml-2
 - Fix [#19](https://github.com/opengeospatial/ets-wcs10/issues/19) Question regarding Test wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-get-kvp-2
