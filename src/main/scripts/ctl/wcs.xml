@@ -239,6 +239,35 @@ offering. Enter the grid resolutions below.</p>
       <ctl:param name="VAR_MULTIFILE_FORMATS"/>
       <ctl:assertion>The WCS 1.0.0 implementation being tested behaves properly</ctl:assertion>
       <ctl:code>
+         <ctl:call-test name="wcs1-0-0:main-all">
+            <ctl:with-param name="VAR_WCS_CAPABILITIES_URL" select="$VAR_WCS_CAPABILITIES_URL"/>
+            <ctl:with-param name="VAR_WCS_FORMAT_1_HEADER" select="$VAR_WCS_FORMAT_1_HEADER"/>
+            <ctl:with-param name="VAR_HIGH_UPDATESEQUENCE" select="$VAR_HIGH_UPDATESEQUENCE"/>
+            <ctl:with-param name="VAR_LOW_UPDATESEQUENCE" select="$VAR_LOW_UPDATESEQUENCE"/>
+            <ctl:with-param name="VAR_WCS_COVERAGE_1_RESX" select="$VAR_WCS_COVERAGE_1_RESX"/>
+            <ctl:with-param name="VAR_WCS_COVERAGE_1_RESY" select="$VAR_WCS_COVERAGE_1_RESY"/>
+            <ctl:with-param name="xml" select="$xml"/>
+            <ctl:with-param name="haveparameter" select="$haveparameter"/>
+            <ctl:with-param name="schemas" select="$schemas"/>
+            <ctl:with-param name="VAR_MULTIFILE_FORMATS" select="$VAR_MULTIFILE_FORMATS"/>
+         </ctl:call-test>
+      </ctl:code>
+   </ctl:test>
+
+
+   <ctl:test name="wcs1-0-0:main-all" isConformanceClass="true" isBasic="true">
+      <ctl:param name="VAR_WCS_CAPABILITIES_URL"/>
+      <ctl:param name="VAR_WCS_FORMAT_1_HEADER"/>
+      <ctl:param name="VAR_HIGH_UPDATESEQUENCE"/>
+      <ctl:param name="VAR_LOW_UPDATESEQUENCE"/>
+      <ctl:param name="VAR_WCS_COVERAGE_1_RESX"/>
+      <ctl:param name="VAR_WCS_COVERAGE_1_RESY"/>
+      <ctl:param name="xml"/>
+      <ctl:param name="haveparameter"/>
+      <ctl:param name="schemas"/>
+      <ctl:param name="VAR_MULTIFILE_FORMATS"/>
+      <ctl:assertion>The WCS 1.0.0 implementation being tested behaves properly</ctl:assertion>
+      <ctl:code>
          <xsl:variable name="VAR_WCS_CAPABILITIES">
             <ctl:request>
                <ctl:url>
