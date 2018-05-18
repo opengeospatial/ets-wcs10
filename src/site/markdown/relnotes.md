@@ -1,6 +1,9 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.15 (2018-05-18)
+- Fix [#27](https://github.com/opengeospatial/ets-wcs10/issues/27) Update CTL with better information about conformance classes
+
 ## 1.14 (2018-02-27)
 - Fix [#32](https://github.com/opengeospatial/ets-wcs10/issues/32) WCS VendorSpecificCapabilities Validation failure for GetCapabilities response
 - Fix [#31](https://github.com/opengeospatial/ets-wcs10/issues/31) wcs1-0-0:getcoverage_operations-getcoverage_request-grid_size-post-xml-2 fails cause of unexpected Content-Type
