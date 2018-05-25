@@ -5,6 +5,7 @@
   <artifactId>ets-wcs10</artifactId>
   <groupId>org.opengis.cite</groupId>
   <version>1.16-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>OGC Web Coverage Service 1.0.0 Executable Test Suite</name>
   <description>
@@ -32,6 +33,21 @@
     <system>GitHub Issue Tracker</system>
     <url>https://github.com/opengeospatial/ets-wcs10/issues</url>
   </issueManagement>
+  <developers>
+    <developer>
+      <name>L. Bermudez</name>
+      <url>https://github.com/bermud</url>
+    </developer>
+    <developer>
+      <name>D. Stenger</name>
+      <url>https://github.com/dstenger</url>
+    </developer>
+    <developer>
+      <name>L. Goltz</name>
+      <url>https://github.com/lgoltz</url>
+    </developer>
+  </developers>
+
   <properties>
     <ets-code>wcs</ets-code>
     <spec-version>1.0.0</spec-version>
