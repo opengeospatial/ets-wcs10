@@ -5702,7 +5702,7 @@ offering. Enter the grid resolutions below.</p>
             </ctl:request>
          </xsl:variable>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request2">
-           <xsl:variable name="content-type" select=".//header[matches(name,'Content-Type','i')]/value" />
+           <xsl:variable name="content-type" select=".//header[name='Content-Type']/value" />
            <xsl:if test="not(contains(substring-before(concat($content-type, ';'), ';'),'xml'))">
               <ctl:message>[FAIL] Expected XML entity (ServiceExceptionReport) in response, but Content-Type is '<xsl:value-of select="$content-type"/>'.</ctl:message>
               <ctl:fail/>
