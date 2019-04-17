@@ -85,6 +85,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.1</version>
         <executions>
           <execution>
             <id>default-jar</id>
@@ -94,6 +95,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M3</version>
         <configuration>
           <skipTests>true</skipTests>
         </configuration>
