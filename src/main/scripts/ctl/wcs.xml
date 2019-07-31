@@ -30,22 +30,12 @@
    <ctl:parser name="parsers:HeadersParser">
       <ctl:java class="com.occamlab.te.parsers.HeadersParser" method="parse"/>
    </ctl:parser>
-   <ctl:parser name="wcs1-0-0:XMLValidatingParser.original">
+   <ctl:parser name="wcs1-0-0:XMLValidatingParser">
       <ctl:java class="com.occamlab.te.parsers.XMLValidatingParser" method="parse"
                 initialized="true">
          <ctl:with-param name="schemas_links">
             <parsers:schemas xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-               <parsers:schema type="resource">xsd/wcs/1.0.0_o/wcsWrapper.xsd</parsers:schema>
-            </parsers:schemas>
-         </ctl:with-param>
-      </ctl:java>
-   </ctl:parser>
-   <ctl:parser name="wcs1-0-0:XMLValidatingParser.corrigendum1">
-      <ctl:java class="com.occamlab.te.parsers.XMLValidatingParser" method="parse"
-                initialized="true">
-         <ctl:with-param name="schemas_links">
-            <parsers:schemas xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-               <parsers:schema type="resource">xsd/wcs/1.0.0_c1/wcsWrapper.xsd</parsers:schema>
+               <parsers:schema type="resource">xsd/wcs/1.0/wcsAll.xsd</parsers:schema>
             </parsers:schemas>
          </ctl:with-param>
       </ctl:java>
@@ -86,8 +76,6 @@ WCS. A typical GetCapabilities request will take this form:</p>
                   <pre>
     http://cite.lat-lon.de/deegree-webservices-3.3.6/services/wcs?service=WCS&amp;version=1.0.0&amp;request=GetCapabilities
 </pre>
-                  <br/>
-                  <br/>
                   <blockquote>
                      <table border="3" padding="3">
                         <tr>
@@ -99,8 +87,6 @@ WCS. A typical GetCapabilities request will take this form:</p>
                      </table>
                   </blockquote>
                   <h4>MIME Header Setup</h4>
-                  <br/>
-                  <br/>
                   <p>There is no standard MIME header definitions for the 5 formats
 required. Thus the actual MIME header depends on the server. The
 assertion test will check the results based on the first available
@@ -118,8 +104,6 @@ below. For example: <b>image/tiff</b></p>
                      </table>
                   </blockquote>
                   <h4>UpdateSequence Values</h4>
-                  <br/>
-                  <br/>
                   <p>The WCS Standard allows servers to use an UpdateSequence value for
 maintaining cache consistency. If the server advertises an
 UpdateSequence value, enter the updateSequence values.</p>
@@ -142,8 +126,6 @@ updateSequence value</td>
                      </table>
                   </blockquote>
                   <h4>The grid resolutions.</h4>
-                  <br/>
-                  <br/>
                   <p>Those values are required to test GetCoverage with parameter
 RESX and RESY. The values depends on the crs provided by the first
 offering. Enter the grid resolutions below.</p>
@@ -164,8 +146,6 @@ offering. Enter the grid resolutions below.</p>
                      </table>
                   </blockquote>
                   <h4>Options</h4>
-                  <br/>
-                  <br/>
                   <p>Does your server support XML encoding?</p>
                   <blockquote>
                      <table border="3" padding="3">
@@ -188,28 +168,7 @@ offering. Enter the grid resolutions below.</p>
                         </tr>
                      </table>
                   </blockquote>
-                  <br/>
-                  <br/>
-                  <h4>Schemas</h4>
-                  <blockquote>
-                     <table border="3" padding="3">
-                        <tr>
-                           <td align="center">
-                              <input name="schemas" type="radio" value="original"/>
-                           </td>
-                           <td align="left">The server implements the original schemas from the WCS 1.0.0 scpecification (OGC 03-065r6)</td>
-                        </tr>
-                        <tr>
-                           <td align="center">
-                              <input name="schemas" type="radio" value="corrigendum1" checked="checked"/>
-                           </td>
-                           <td align="left">The server implements the schemas from the WCS 1.0.0 corrigendum (OGC 05-076)</td>
-                        </tr>
-                     </table>
-                  </blockquote>
                   <h4>Multipart Formats</h4>
-                  <br/>
-                  <br/>
                   <p>Some formats return a multi-file payload.  Identify each format that requires
                   a multi-file return in the box below, separating each format with a space.</p>
                   <blockquote>
@@ -235,7 +194,6 @@ offering. Enter the grid resolutions below.</p>
       <ctl:param name="VAR_WCS_COVERAGE_1_RESY"/>
       <ctl:param name="xml"/>
       <ctl:param name="haveparameter"/>
-      <ctl:param name="schemas"/>
       <ctl:param name="VAR_MULTIFILE_FORMATS"/>
       <ctl:assertion>The WCS 1.0.0 implementation being tested behaves properly</ctl:assertion>
       <ctl:code>
@@ -248,7 +206,6 @@ offering. Enter the grid resolutions below.</p>
             <ctl:with-param name="VAR_WCS_COVERAGE_1_RESY" select="$VAR_WCS_COVERAGE_1_RESY"/>
             <ctl:with-param name="xml" select="$xml"/>
             <ctl:with-param name="haveparameter" select="$haveparameter"/>
-            <ctl:with-param name="schemas" select="$schemas"/>
             <ctl:with-param name="VAR_MULTIFILE_FORMATS" select="$VAR_MULTIFILE_FORMATS"/>
          </ctl:call-test>
       </ctl:code>
@@ -277,14 +234,7 @@ offering. Enter the grid resolutions below.</p>
             </ctl:request>
          </xsl:variable>
          <xsl:variable name="parser">
-            <xsl:choose>
-               <xsl:when test="$schemas = 'original'">
-                  <wcs1-0-0:XMLValidatingParser.original/>
-               </xsl:when>
-               <xsl:otherwise>
-                  <wcs1-0-0:XMLValidatingParser.corrigendum1/>
-               </xsl:otherwise>
-            </xsl:choose>
+            <wcs1-0-0:XMLValidatingParser/>
          </xsl:variable>
          <xsl:for-each select="$VAR_WCS_CAPABILITIES">
             <xsl:variable name="VAR_WCS_VERSION">
@@ -1850,7 +1800,7 @@ offering. Enter the grid resolutions below.</p>
                   <parsers:parse>
                      <parsers:XMLValidatingParser>
                         <parsers:schemas xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-                           <parsers:schema type="resource">xsd/wcs/1.0.0_o/exception.xsd</parsers:schema>
+                           <parsers:schema type="resource">xsd/wcs/1.0/OGC-exception.xsd</parsers:schema>
                         </parsers:schemas>
                      </parsers:XMLValidatingParser>
                   </parsers:parse>
