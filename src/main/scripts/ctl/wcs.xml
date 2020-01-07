@@ -6070,14 +6070,30 @@ offering. Enter the grid resolutions below.</p>
                <ctl:param name="WiDtH">
                   <xsl:value-of select="$VAR_WCS_COVERAGE_1_WIDTH"/>
                </ctl:param>
+               <parsers:HTTPParser>
+                 <parsers:parse mime="text/xml" />
+                 <parsers:parse mime="image">
+                   <parsers:NullParser/>
+                 </parsers:parse>
+               </parsers:HTTPParser>
             </ctl:request>
          </xsl:variable>
-         <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request2">
-            <xsl:variable name="expression">not(boolean(//*[local-name()='ServiceExceptionReport']))</xsl:variable>
-            <xsl:if test="saxon:evaluate($expression)">
-               <ctl:fail/>
-            </xsl:if>
-         </xsl:for-each>
+         <xsl:variable name="content-type" select="$response//header[functions:to-lowercase(@name) = 'content-type']" />
+         <xsl:choose>
+            <xsl:when test="contains($content-type, '/xml')">
+               <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                  select="$request2">
+                  <xsl:variable name="expression">not(boolean(//*[local-name()='ServiceExceptionReport']))</xsl:variable>
+                  <xsl:if test="saxon:evaluate($expression)">
+                     <ctl:fail />
+                  </xsl:if>
+               </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+               <ctl:message>[FAIL] Expected XML media type, but received Content-Type: '<xsl:value-of select="$content-type" />' </ctl:message>
+               <ctl:fail />
+            </xsl:otherwise>
+         </xsl:choose>
       </ctl:code>
    </ctl:test>
    <ctl:test name="wcs1-0-0:getcoverage_operations-getcoverage_request-parameter-get-kvp-4">
