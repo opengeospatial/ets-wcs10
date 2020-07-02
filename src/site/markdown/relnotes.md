@@ -1,6 +1,16 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.16 (2020-07-02)
+- [#50](https://github.com/opengeospatial/ets-wcs10/issues/50) - invalid XML character in getcoverage_operations-getcoverage_request-parameter-post-kvp-3
+- [#21](https://github.com/opengeospatial/ets-wcs10/issues/21) - Missing references of additional test cases
+- [#46](https://github.com/opengeospatial/ets-wcs10/pull/46) - Updated teamengine version to 5.4
+- [#44](https://github.com/opengeospatial/ets-wcs10/issues/44) - Incorrect validation of lonLatEnvelope srsName attribute
+- [#45](https://github.com/opengeospatial/ets-wcs10/issues/45) - Internal Server Error because of invalid xml characters
+- [#48](https://github.com/opengeospatial/ets-wcs10/issues/48) - wcs 1.0.0 compliance test getcoverage issue
+- [#40](https://github.com/opengeospatial/ets-wcs10/issues/40) - getcoverage_operations-getcoverage_request-grid_size-post-xml-2 fails as concat() cannot be executed
+- [#39](https://github.com/opengeospatial/ets-wcs10/issues/39) - Enable Docker support
+
 ## 1.15 (2018-05-18)
 - Fix [#27](https://github.com/opengeospatial/ets-wcs10/issues/27) Update CTL with better information about conformance classes
 
