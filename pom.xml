@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ets-wcs10</artifactId>
   <groupId>org.opengis.cite</groupId>
-  <version>1.16-SNAPSHOT</version>
+  <version>1.16</version>
   <packaging>pom</packaging>
 
   <name>OGC Web Coverage Service 1.0.0 Executable Test Suite</name>
@@ -27,7 +27,7 @@
     <url>https://github.com/opengeospatial/ets-wcs10</url>    
     <connection>scm:git:https://github.com/opengeospatial/ets-wcs10.git</connection>    
     <developerConnection>scm:git:git@github.com:opengeospatial/ets-wcs10.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>1.16</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Tracker</system>
