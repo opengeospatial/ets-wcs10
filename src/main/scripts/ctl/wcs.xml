@@ -8857,7 +8857,7 @@ offering. Enter the grid resolutions below.</p>
          <xsl:for-each select="$request1/wcs:CoverageDescription/wcs:CoverageOffering[wcs:domainSet/wcs:spatialDomain]/wcs:supportedFormats/wcs:formats">
             <xsl:if test="not(../../preceding-sibling::wcs:CoverageOffering[wcs:domainSet/wcs:spatialDomain]/wcs:supportedFormats/wcs:formats=.)">
                <xsl:variable name="coverage" select="../../wcs:name"/>
-               <xsl:variable name="crs" select="../../wcs:domainSet/wcs:spatialDomain/gml:Envelope/@srsName"/>
+               <xsl:variable name="crs" select="../../wcs:domainSet/wcs:spatialDomain/gml:Envelope[1]/@srsName"/>
                <xsl:variable name="bbox">
                   <xsl:value-of select="translate(normalize-space(../../wcs:domainSet/wcs:spatialDomain/gml:Envelope[1]/gml:pos[1]), ' ', ',')"/>
                   <xsl:text>,</xsl:text>
