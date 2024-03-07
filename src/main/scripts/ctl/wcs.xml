@@ -6549,6 +6549,12 @@ offering. Enter the grid resolutions below.</p>
 </rangeSubset>
 
 <output><format>]]><xsl:value-of select="$VAR_WCS_FORMAT_1"/><![CDATA[</format></output></GetCoverage>]]></ctl:body>
+               <parsers:HTTPParser>
+                 <parsers:parse mime="text/xml" />
+                 <parsers:parse mime="image">
+                   <parsers:NullParser/>
+                 </parsers:parse>
+               </parsers:HTTPParser>
             </ctl:request>
          </xsl:variable>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request2">
