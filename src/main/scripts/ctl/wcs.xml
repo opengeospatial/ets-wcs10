@@ -6028,7 +6028,7 @@ offering. Enter the grid resolutions below.</p>
                </parsers:HTTPParser>
             </ctl:request>
          </xsl:variable>
-         <xsl:variable name="content-type" select="$response//header[functions:to-lowercase(@name) = 'content-type']" />
+         <xsl:variable name="content-type" select="$request2//header[lower-case(@name) = 'content-type']" />
          <xsl:choose>
             <xsl:when test="contains($content-type, '/xml')">
                <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -6295,7 +6295,7 @@ offering. Enter the grid resolutions below.</p>
                <parsers:HeadersParser/>
             </ctl:request>
          </xsl:variable>
-         <xsl:variable name="content-type" select="$request2//header[functions:to-lowercase(@name) = 'content-type']" />
+         <xsl:variable name="content-type" select="$request2//header[lower-case(@name) = 'content-type']" />
          <xsl:choose>
             <xsl:when test="contains($content-type, '/xml')">
                <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -6549,6 +6549,12 @@ offering. Enter the grid resolutions below.</p>
 </rangeSubset>
 
 <output><format>]]><xsl:value-of select="$VAR_WCS_FORMAT_1"/><![CDATA[</format></output></GetCoverage>]]></ctl:body>
+               <parsers:HTTPParser>
+                 <parsers:parse mime="text/xml" />
+                 <parsers:parse mime="image">
+                   <parsers:NullParser/>
+                 </parsers:parse>
+               </parsers:HTTPParser>
             </ctl:request>
          </xsl:variable>
          <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$request2">
