@@ -1,6 +1,9 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.18 (2024-03-21)
+- [#59](https://github.com/opengeospatial/ets-wcs10/issues/59) - Check why ETS on Beta is not completing Test wcs1-0-0:getcoverage_operations-getcoverage_request-parameter-get-kvp-3
+
 ## 1.17 (2024-01-31)
 - [#56](https://github.com/opengeospatial/ets-wcs10/issues/56) - Invalid request produced by WCS 1.0.0 test wcs1-0-0:getcoverage_operations-getcoverage_response-encoding-supportedFormats
 - [#58](https://github.com/opengeospatial/ets-wcs10/pull/58) - Set version of TEAM Engine dependency to 5.7 and upgrade xercesImpl to version 2.12.2
