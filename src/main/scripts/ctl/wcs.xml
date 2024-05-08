@@ -6297,7 +6297,7 @@ offering. Enter the grid resolutions below.</p>
             </ctl:request>
          </xsl:variable>
          <!-- The HeadersParser puts the header value in a value element -->
-         <xsl:variable name="content-type" select="$request2//header[lower-case(@name)/value = 'content-type']" />
+         <xsl:variable name="content-type" select="$request2//header[name[lower-case(text())='content-type']]/value" />
          <xsl:choose>
             <!-- https://github.com/opengeospatial/ets-wcs10/issues/61 only check if xml is contained in content-type -->
             <xsl:when test="contains($content-type, 'xml')">
