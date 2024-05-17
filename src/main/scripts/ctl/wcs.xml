@@ -6030,7 +6030,8 @@ offering. Enter the grid resolutions below.</p>
          </xsl:variable>
          <xsl:variable name="content-type" select="$request2//header[lower-case(@name) = 'content-type']" />
          <xsl:choose>
-            <xsl:when test="contains($content-type, '/xml')">
+            <!-- https://github.com/opengeospatial/ets-wcs10/issues/61 only check if xml is contained in content-type -->
+            <xsl:when test="contains($content-type, 'xml')">
                <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                   select="$request2">
                   <xsl:variable name="expression">not(boolean(//*[local-name()='ServiceExceptionReport']))</xsl:variable>
@@ -6292,12 +6293,18 @@ offering. Enter the grid resolutions below.</p>
                <ctl:param name="HeIgHt">
                   <xsl:value-of select="$VAR_WCS_COVERAGE_1_HEIGHT"/>
                </ctl:param>
-               <parsers:HeadersParser/>
+               <parsers:HTTPParser>
+                 <parsers:parse mime="text/xml" />
+                 <parsers:parse mime="image">
+                   <parsers:NullParser/>
+                 </parsers:parse>
+               </parsers:HTTPParser>
             </ctl:request>
          </xsl:variable>
          <xsl:variable name="content-type" select="$request2//header[lower-case(@name) = 'content-type']" />
          <xsl:choose>
-            <xsl:when test="contains($content-type, '/xml')">
+            <!-- https://github.com/opengeospatial/ets-wcs10/issues/61 only check if xml is contained in content-type -->
+            <xsl:when test="contains($content-type, 'xml')">
                <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                   select="$request2">
                   <xsl:variable name="expression">not(boolean(//*[local-name()='ServiceExceptionReport']))</xsl:variable>
