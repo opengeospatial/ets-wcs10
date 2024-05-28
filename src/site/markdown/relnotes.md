@@ -1,6 +1,9 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.19 (2024-05-28)
+- [#61](https://github.com/opengeospatial/ets-wcs10/issues/61) - WCS 1.0.0 compliance test incorrectly reports my server has an invalid content type (te2 v1.18)
+
 ## 1.18 (2024-03-21)
 - [#59](https://github.com/opengeospatial/ets-wcs10/issues/59) - Check why ETS on Beta is not completing Test wcs1-0-0:getcoverage_operations-getcoverage_request-parameter-get-kvp-3
 
