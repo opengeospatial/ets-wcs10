@@ -11,3 +11,5 @@ pom.xml.next
 # IntelliJ IDEA
 .idea/
 *.iml
+.project
+.settings/
