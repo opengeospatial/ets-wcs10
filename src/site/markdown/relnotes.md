@@ -1,6 +1,12 @@
 
 # WCS 1.0.0 Test Suite Release Notes
 
+## 1.20 (2025-03-05)
+
+Attention: Java 17 and Tomcat 10.1 are required.
+
+- [#64](https://github.com/opengeospatial/ets-wcs10/issues/64) - Migrate test suite to TEAM Engine 6 (Java 17)
+
 ## 1.19 (2024-05-28)
 - [#61](https://github.com/opengeospatial/ets-wcs10/issues/61) - WCS 1.0.0 compliance test incorrectly reports my server has an invalid content type (te2 v1.18)
 
